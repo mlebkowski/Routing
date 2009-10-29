@@ -73,10 +73,6 @@ class SplClassLoader
      */
     public function loadClass($className)
     {
-        if (class_exists($className, false) || interface_exists($className, false)) {
-            return false;
-        }
-
         if (strpos($className, $this->_namespace.$this->_namespaceSeparator) !== 0) {
             return false;
         }
