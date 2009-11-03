@@ -22,9 +22,10 @@ class SplClassLoader
      * 
      * @param string $ns The namespace to use.
      */
-    public function __construct($ns)
+    public function __construct($ns, $includePath = null)
     {
         $this->_namespace = $ns;
+        $this->_includePath = $includePath;
     }
     
     /**
