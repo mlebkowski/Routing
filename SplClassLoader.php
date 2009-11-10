@@ -22,10 +22,10 @@ class SplClassLoader
      * 
      * @param string $ns The namespace to use.
      */
-    public function __construct($ns, $includePath = null)
+    public function __construct($includePath = null, $ns = null)
     {
-        $this->_namespace = $ns;
         $this->_includePath = $includePath;
+        $this->_namespace = $ns;
     }
     
     /**
@@ -74,7 +74,7 @@ class SplClassLoader
      */
     public function loadClass($className)
     {
-        if (0 === strpos($className, $this->_namespace.$this->_namespaceSeparator)) {
+        if ($this->_namespace === null || 0 === strpos($className, $this->_namespace.$this->_namespaceSeparator)) {
               require ($this->_includePath !== null ? $this->_includePath . DIRECTORY_SEPARATOR : '')
                     . str_replace($this->_namespaceSeparator, DIRECTORY_SEPARATOR, $className)
                     . $this->_fileExtension;
