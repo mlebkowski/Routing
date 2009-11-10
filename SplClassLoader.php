@@ -37,17 +37,37 @@ class SplClassLoader
     {
         $this->_namespaceSeparator = $sep;
     }
-    
+
+    /**
+     * Gets the namespace seperator used by classes in the namespace of this class loader.
+     *
+     * @return void
+     */
+    public function getNamespaceSeparator()
+    {
+        return $this->_namespaceSeparator;
+    }
+
     /**
      * Sets the base include path for all class files in the namespace of this class loader.
      * 
-     * @param string $basePath
+     * @param string $includePath
      */
     public function setIncludePath($includePath)
     {
         $this->_includePath = $includePath;
     }
-    
+
+    /**
+     * Gets the base include path for all class files in the namespace of this class loader.
+     *
+     * @return string $includePath
+     */
+    public function getIncludePath()
+    {
+        return $this->_includePath;
+    }
+
     /**
      * Sets the file extension of class files in the namespace of this class loader.
      * 
@@ -57,7 +77,17 @@ class SplClassLoader
     {
         $this->_fileExtension = $fileExtension;
     }
-    
+
+    /**
+     * Gets the file extension of class files in the namespace of this class loader.
+     *
+     * @return string $fileExtension
+     */
+    public function getFileExtension()
+    {
+        return $this->_fileExtension;
+    }
+
     /**
      * Installs this class loader on the SPL autoload stack.
      */
@@ -65,7 +95,15 @@ class SplClassLoader
     {
         spl_autoload_register(array($this, 'loadClass'));
     }
-    
+
+    /**
+     * Uninstalls this class loader from the SPL autoloader stack.
+     */
+    public function unregister()
+    {
+        spl_autoload_unregister(array($this, 'loadClass'));
+    }
+
     /**
      * Loads the given class or interface.
      *
@@ -75,9 +113,17 @@ class SplClassLoader
     public function loadClass($className)
     {
         if (null === $this->_namespace || 0 === strpos($className, $this->_namespace.$this->_namespaceSeparator)) {
-              require ($this->_includePath !== null ? $this->_includePath . DIRECTORY_SEPARATOR : '')
-                    . str_replace($this->_namespaceSeparator, DIRECTORY_SEPARATOR, $className)
-                    . $this->_fileExtension;
+            $namespace = '';
+            $fileName  = '';
+            if (strstr($className, $this->_namespaceSeparator)) {
+                $pos = strrpos($className, $this->_namespaceSeparator);
+                $namespace = substr($className, 0, $pos);
+                $className = substr($className, $pos + 1);
+                $fileName  = str_replace($this->_namespaceSeparator, DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
+            }
+            $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . $this->_fileExtension;
+
+            require ($this->_includePath !== null ? $this->_includePath . DIRECTORY_SEPARATOR : '') . $fileName;
         }
     }
 }
