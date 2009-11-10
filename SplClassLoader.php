@@ -74,7 +74,7 @@ class SplClassLoader
      */
     public function loadClass($className)
     {
-        if ($this->_namespace === null || 0 === strpos($className, $this->_namespace.$this->_namespaceSeparator)) {
+        if (null === $this->_namespace || 0 === strpos($className, $this->_namespace.$this->_namespaceSeparator)) {
               require ($this->_includePath !== null ? $this->_includePath . DIRECTORY_SEPARATOR : '')
                     . str_replace($this->_namespaceSeparator, DIRECTORY_SEPARATOR, $className)
                     . $this->_fileExtension;
