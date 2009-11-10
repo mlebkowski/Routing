@@ -32,8 +32,8 @@ class SplClassLoader
      */
     public function __construct($ns = null, $includePath = null)
     {
-        $this->_includePath = $includePath;
         $this->_namespace = $ns;
+        $this->_includePath = $includePath;
     }
 
     /**
