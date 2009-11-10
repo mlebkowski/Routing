@@ -6,7 +6,7 @@
  *
  *     // Example which loads classes for the Doctrine Common package in the
  *     // Doctrine\Common namespace.
- *     $classLoader = new SplClassLoader('Doctrine\Common');
+ *     $classLoader = new SplClassLoader('Doctrine\Common', '/path/to/doctrine');
  *     $classLoader->register();
  */
 class SplClassLoader
@@ -15,19 +15,19 @@ class SplClassLoader
     private $_namespace;
     private $_includePath;
     private $_namespaceSeparator = '\\';
-    
+
     /**
      * Creates a new <tt>SplClassLoader</tt> that loads classes of the
      * specified namespace.
      * 
      * @param string $ns The namespace to use.
      */
-    public function __construct($includePath = null, $ns = null)
+    public function __construct($ns = null, $includePath = null)
     {
         $this->_includePath = $includePath;
         $this->_namespace = $ns;
     }
-    
+
     /**
      * Sets the namespace separator used by classes in the namespace of this class loader.
      * 
@@ -116,9 +116,9 @@ class SplClassLoader
             $namespace = '';
             $fileName  = '';
             if (strstr($className, $this->_namespaceSeparator)) {
-                $pos = strrpos($className, $this->_namespaceSeparator);
-                $namespace = substr($className, 0, $pos);
-                $className = substr($className, $pos + 1);
+                $lastNsPos = strrpos($className, $this->_namespaceSeparator);
+                $namespace = substr($className, 0, $lastNsPos);
+                $className = substr($className, $lastNsPos + 1);
                 $fileName  = str_replace($this->_namespaceSeparator, DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
             }
             $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . $this->_fileExtension;
