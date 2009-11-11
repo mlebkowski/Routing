@@ -120,13 +120,15 @@ class SplClassLoader
      */
     public function loadClass($className)
     {
-        if (null === $this->_namespace || $this->_namespace . $this->_namespaceSeparator === substr($className, 0, strlen($this->_namespace.$this->_namespaceSeparator)) ) {
+        if (null === $this->_namespace || 0 === strpos($className, $this->_namespace.$this->_namespaceSeparator)) {
+            $fileName = '';
             $namespace = '';
             if ($lastNsPos = strripos($className, $this->_namespaceSeparator)) {
                 $namespace = substr($className, 0, $lastNsPos);
                 $className = substr($className, $lastNsPos + 1);
+                $fileName = str_replace($this->_namespaceSeparator, DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
             }
-            $fileName = str_replace(array($this->_namespaceSeparator, '_'), DIRECTORY_SEPARATOR, $namespace . DIRECTORY_SEPARATOR . $className) . $this->_fileExtension;
+            $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . $this->_fileExtension;
 
             require ($this->_includePath !== null ? $this->_includePath . DIRECTORY_SEPARATOR : '') . $fileName;
         }
