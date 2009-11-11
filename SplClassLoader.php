@@ -123,8 +123,7 @@ class SplClassLoader
         if (null === $this->_namespace || 0 === strpos($className, $this->_namespace.$this->_namespaceSeparator)) {
             $namespace = '';
             $fileName  = '';
-            if (strstr($className, $this->_namespaceSeparator)) {
-                $lastNsPos = strrpos($className, $this->_namespaceSeparator);
+            if ($lastNsPos = strripos($className, $this->_namespaceSeparator)) {
                 $namespace = substr($className, 0, $lastNsPos);
                 $className = substr($className, $lastNsPos + 1);
                 $fileName  = str_replace($this->_namespaceSeparator, DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
