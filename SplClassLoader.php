@@ -115,8 +115,8 @@ class SplClassLoader
     /**
      * Loads the given class or interface.
      *
-     * @param string $classname The name of the class to load.
-     * @return boolean TRUE if the class has been successfully loaded, FALSE otherwise.
+     * @param string $className The name of the class to load.
+     * @return void
      */
     public function loadClass($className)
     {
