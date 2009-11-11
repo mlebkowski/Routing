@@ -120,7 +120,7 @@ class SplClassLoader
      */
     public function loadClass($className)
     {
-        if (null === $this->_namespace || 0 === strpos($className, $this->_namespace.$this->_namespaceSeparator)) {
+        if (null === $this->_namespace || $this->_namespace . $this->_namespaceSeparator === substr($className, 0, strlen($this->_namespace.$this->_namespaceSeparator)) ) {
             $namespace = '';
             if ($lastNsPos = strripos($className, $this->_namespaceSeparator)) {
                 $namespace = substr($className, 0, $lastNsPos);
