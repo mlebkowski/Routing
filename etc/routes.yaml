@@ -1,0 +1,56 @@
+# will match all of them
+Default:
+  Controller: main
+  Method: index
+
+Log: 
+  Route: log/:page
+  Controller: main
+  Method: log
+  Params:
+    page: \d+?
+
+Manage:
+  Route: zarzadzaj
+  Controller: main
+  Method: manage
+
+Edit Plan:
+  Route: plan/:id/edit
+  Controller: main
+  Method: planEdit
+
+Plan Costs Form:
+  Route: plan/:id/cost/:date
+  Controller: main
+  Method: planCost
+  Params:
+   id: \d+
+   date: \d{4}-\d{2}-\d{2}?
+   
+Report:
+  Route: raport
+  Controller: main
+  Method: getReport
+
+Get BBelements Stats:
+  Route: bot/getBBelements/:date
+  Controller: bot
+  Method: getBbelements
+  Params:
+    date: \d{4}-\d{2}-\d{2}?
+  
+Get Meta Stats:
+  Route: bot/getMetaStats/:date
+  Controller: bot
+  Method: getmetalyzerstats
+  Params:
+    date: \d{4}-\d{2}-\d{2}?
+
+Get Trade Doubler Stats:
+  Route: bot/getTradeDoubler/:date
+  Controller: bot
+  Method: gettradedoublerstats
+  Params:
+    date: \d{4}-\d{2}-\d{2}?  
+
