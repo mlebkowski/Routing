@@ -8,7 +8,7 @@ Log:
   Controller: main
   Method: log
   Params:
-    page: \d+?
+    page: \d+ 1
 
 Manage:
   Route: zarzadzaj
@@ -26,7 +26,7 @@ Plan Costs Form:
   Method: planCost
   Params:
    id: \d+
-   date: \d{4}-\d{2}-\d{2}?
+   date: \d{4}-\d{2}-\d{2} yesterday
    
 Report:
   Route: raport
@@ -38,19 +38,19 @@ Get BBelements Stats:
   Controller: bot
   Method: getBbelements
   Params:
-    date: \d{4}-\d{2}-\d{2}?
+    date: \d{4}-\d{2}-\d{2} yesterday
   
 Get Meta Stats:
   Route: bot/getMetaStats/:date
   Controller: bot
   Method: getmetalyzerstats
   Params:
-    date: \d{4}-\d{2}-\d{2}?
+    date: \d{4}-\d{2}-\d{2} yesterday
 
 Get Trade Doubler Stats:
   Route: bot/getTradeDoubler/:date
   Controller: bot
   Method: gettradedoublerstats
   Params:
-    date: \d{4}-\d{2}-\d{2}?  
+    date: \d{4}-\d{2}-\d{2} yesterday 
 
