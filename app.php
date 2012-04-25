@@ -13,10 +13,10 @@
   $builder = new UrlBuilder($routes);
   
   foreach (array (
-//    'plan/1', 'plan/xxx', 'plan/1/edit', '/plan/xxx/edit',
+    'plan/1', 'plan/xxx', 'plan/1/edit', '/plan/xxx/edit',
     'plan/1/cost', 'plan/1/cost/2012-03-03',  'plan/1/cost/2010',
-//    'log', 'log.html', '/log/1',
-//    'zarzadzaj', 
+    'log', 'log.html', '/log/1',
+    'zarzadzaj', 
     'raport?a=b'
   ) as $request):
   

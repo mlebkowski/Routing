@@ -1,56 +1,47 @@
 # will match all of them
 Default:
-  Controller: main
-  Method: index
+  action: main::index
 
 Log: 
-  Route: log/:page
-  Controller: main
-  Method: log
-  Params:
+  route: log/:page
+  action: main::log
+  params:
     page: \d+ 1
 
 Manage:
-  Route: zarzadzaj
-  Controller: main
-  Method: manage
+  route: zarzadzaj
+  action: main::manage
 
 Edit Plan:
-  Route: plan/:id/edit
-  Controller: main
-  Method: planEdit
+  route: plan/:id/edit
+  action: main::planEdit
 
 Plan Costs Form:
-  Route: plan/:id/cost/:date
-  Controller: main
-  Method: planCost
-  Params:
+  route: plan/:id/cost/:date
+  action: main::planCost
+  params:
    id: \d+
    date: \d{4}-\d{2}-\d{2} yesterday
    
 Report:
-  Route: raport
-  Controller: main
-  Method: getReport
+  route: raport
+  action: main::getReport
 
 Get BBelements Stats:
-  Route: bot/getBBelements/:date
-  Controller: bot
-  Method: getBbelements
-  Params:
+  route: bot/getBBelements/:date
+  action: bot::getBbelements
+  params:
     date: \d{4}-\d{2}-\d{2} yesterday
   
 Get Meta Stats:
-  Route: bot/getMetaStats/:date
-  Controller: bot
-  Method: getmetalyzerstats
-  Params:
+  route: bot/getMetaStats/:date
+  action: bot::getmetalyzerstats
+  params:
     date: \d{4}-\d{2}-\d{2} yesterday
 
 Get Trade Doubler Stats:
-  Route: bot/getTradeDoubler/:date
-  Controller: bot
-  Method: gettradedoublerstats
-  Params:
+  route: bot/getTradeDoubler/:date
+  action: bot::gettradedoublerstats
+  params:
     date: \d{4}-\d{2}-\d{2} yesterday 
 
