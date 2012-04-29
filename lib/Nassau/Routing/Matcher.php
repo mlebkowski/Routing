@@ -44,7 +44,7 @@ class Matcher {
 					}
 				}
 	
-				$data['route'] = $route['route'];
+				$data['route'] = $route;
 				$data['name'] = $name;
 				$data['action'] = $route['action'];
 				$data['params'] = $params + $query;
