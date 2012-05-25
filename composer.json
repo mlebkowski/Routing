@@ -1,0 +1,22 @@
+{
+    "name": "mlebkowski/routing",
+    "require": {
+        "symfony/yaml": "2.1.x-dev",
+        "mlebkowski/config": "*"
+    },
+    "repositories": [
+    	{
+    		"type": "vcs",
+    		"url": "http://github.com/mlebkowski/Config"
+    	}
+    ],
+    "authors": [
+        {
+            "name": "Maciej Lebkowski",
+            "email": "m.lebkowski+git@gmail.com"
+        }
+    ],
+    "autoload": {
+    	"psr-0": { "Nassau\\Routing": "src/" }
+    }
+}

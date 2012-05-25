@@ -1,8 +1,6 @@
 <?php
 
-  include 'lib/Spl/SplClassLoader.php';
-  $o = new SplClassLoader(null, __DIR__ . '/lib');
-  $o -> register();
+  require 'vendor/autoload.php';
   
   use \Nassau\Config\Config,
       \Nassau\Routing\Matcher,
@@ -25,7 +23,7 @@
       $m = $routing->match($request);
       $url = $builder->build($m['name'], array("filter" => rand(1,10)) + $m['params']);
     
-      echo implode(' => ', array($request, $url, $m['route'], print_r($m['params'], true)));
+      echo implode(' => ', array($request, $url, $m['name'], print_r($m['params'], true)));
     
     } catch (Exception $E) {
     

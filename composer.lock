@@ -1,0 +1,20 @@
+{
+    "hash": "a61ceeb1af6a783686596df9cc7cdaaa",
+    "packages": [
+        {
+            "package": "mlebkowski/config",
+            "version": "dev-master",
+            "source-reference": "16d0f0bb955b5b5611e60edab46a30723aeed8e9"
+        },
+        {
+            "package": "symfony/yaml",
+            "version": "dev-master",
+            "source-reference": "49ad500448c17a4b515c8f567dbb540af3cf41ef",
+            "alias": "2.1.9999999.9999999-dev"
+        }
+    ],
+    "packages-dev": null,
+    "aliases": [
+
+    ]
+}
