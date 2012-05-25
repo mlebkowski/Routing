@@ -2,14 +2,8 @@
     "name": "mlebkowski/routing",
     "require": {
         "symfony/yaml": "2.1.x-dev",
-        "mlebkowski/config": "*"
+        "mlebkowski/config": "dev-master"
     },
-    "repositories": [
-    	{
-    		"type": "vcs",
-    		"url": "http://github.com/mlebkowski/Config"
-    	}
-    ],
     "authors": [
         {
             "name": "Maciej Lebkowski",
