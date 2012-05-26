@@ -1,17 +1,23 @@
 <?php namespace Nassau\Routing;
 
+use Nassau\Config\Config;
+
 class Matcher {
 	private $routes;
-	private $authManager;
 
 	private $request;
-	private $method = 'GET';
 	private $params = array ();
 
 	const FORMATS = 'html, js, json, xml, xls, csv';
 
-	public function __construct(\Nassau\Config\Config $routes, $authManager = null) {
+	public function __construct(Config $routes) {
+		$this->setRoutes($routes);
+	}
+	public function setRoutes(Config $routes) {
 		$this->routes = $routes;
+	}
+	public function getRoutes() {
+		return $this->routes;
 	}
 
 	public function match($request) {
@@ -29,7 +35,7 @@ class Matcher {
 
 		foreach ($this->routes as $name => $route):
 			$route = $this->prepareRoute($route);
-			if (empty($route['route']) || empty($route['action'])) continue;
+			if (empty($route['route'])) continue;
 	
 			$params = UrlBuilder::getRouteParams($route);
 			$regexp = $this->getRouteRegexp($route['route'], $params);
@@ -58,7 +64,9 @@ class Matcher {
 	}
 	
 	public function prepareRoute ($route) {
-		if ($route instanceof \Nassau\Config\Config) $route = $route->toArray();
+		if ($route instanceof Config) {
+			$route = $route->toArray();
+		}
 		$route = array_merge(array (
 			'route' => null,
 			'params' => array (),
